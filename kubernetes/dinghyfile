@@ -256,8 +256,7 @@
 		      "source": "text",
 		      "type": "deployManifest"
 		    }
-		  ],
-		  "triggers": [],
+		  ]
 		}
 	]
 }
