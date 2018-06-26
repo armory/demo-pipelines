@@ -4,7 +4,7 @@
 		{
 		  "application": "kubernetes",
 		  "name": "V2 Provider",
-		  "description": "This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed.",
+		  "description": "This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
 		  "keepWaitingPipelines": false,
 		  "lastModifiedBy": "anonymous",
 		  "limitConcurrent": true,
