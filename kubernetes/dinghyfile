@@ -3,6 +3,121 @@
 	"pipelines": [
 		{
 		  "application": "kubernetes",
+		  "name": "V2 Provider - Github Artifacts",
+		  "expectedArtifacts": [
+		    {
+		      "defaultArtifact": {
+		        "kind": "default.github",
+		        "name": "manifests/demo.yml",
+		        "reference": "https://api.github.com/repos/armory/spinnaker-k8s-v2-example/contents/manifests/demo.yml",
+		        "type": "github/file",
+		        "version": "master"
+		      },
+		      "id": "4312a8c5-39e0-4271-b5de-144fa77d3e94",
+		      "matchArtifact": {
+		        "kind": "github",
+		        "name": "manifests/demo.yml",
+		        "type": "github/file"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    },
+		    {
+		      "defaultArtifact": {
+		        "kind": "default.docker",
+		        "name": "index.docker.io/lwander/spin-kub-v2-demo",
+		        "reference": "index.docker.io/lwander/spin-kub-v2-demo:latest",
+		        "type": "docker/image",
+		        "version": "latest"
+		      },
+		      "id": "b48a9132-5385-4310-9968-358791d79f30",
+		      "matchArtifact": {
+		        "kind": "docker",
+		        "name": "index.docker.io/lwander/spin-kub-v2-demo",
+		        "type": "docker/image"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    }
+		  ],
+		  "keepWaitingPipelines": false,
+		  "lastModifiedBy": "ethanfrogers",
+		  "limitConcurrent": true,
+		  "parameterConfig": [
+		    {
+		      "default": "demo",
+		      "description": "Kubernetes Namespace",
+		      "label": "Namespace",
+		      "name": "namespace",
+		      "required": true
+		    }
+		  ],
+		  "stages": [
+		    {
+		      "account": "kubernetes",
+		      "cloudProvider": "kubernetes",
+		      "manifestArtifactAccount": "github-public",
+		      "manifestArtifactId": "4312a8c5-39e0-4271-b5de-144fa77d3e94",
+		      "moniker": {
+		        "app": "kubernetes",
+		        "cluster": "v2dev"
+		      },
+		      "name": "Deploy Artifact to Dev",
+		      "refId": "1",
+		      "relationships": {
+		        "loadBalancers": [],
+		        "securityGroups": []
+		      },
+		      "requiredArtifactIds": [
+		        "b48a9132-5385-4310-9968-358791d79f30"
+		      ],
+		      "requisiteStageRefIds": [],
+		      "source": "artifact",
+		      "type": "deployManifest"
+		    },
+		    {
+		      "failPipeline": true,
+		      "instructions": "Do these manifests look okay?",
+		      "judgmentInputs": [],
+		      "name": "Manual Judgment",
+		      "notifications": [],
+		      "refId": "2",
+		      "requisiteStageRefIds": [
+		        "1"
+		      ],
+		      "type": "manualJudgment"
+		    },
+		    {
+		      "account": "kubernetes",
+		      "cloudProvider": "kubernetes",
+		      "manifestArtifactAccount": "github-public",
+		      "manifestArtifactId": "4312a8c5-39e0-4271-b5de-144fa77d3e94",
+		      "moniker": {
+		        "app": "kubernetes",
+		        "cluster": "v2prod"
+		      },
+		      "name": "Deploy Artifact to Prod",
+		      "refId": "3",
+		      "relationships": {
+		        "loadBalancers": [],
+		        "securityGroups": []
+		      },
+		      "requiredArtifactIds": [
+		        "b48a9132-5385-4310-9968-358791d79f30"
+		      ],
+		      "requisiteStageRefIds": [
+		        "2"
+		      ],
+		      "source": "artifact",
+		      "type": "deployManifest"
+		    }
+		  ],
+		  "triggers": []
+		},
+		{
+		  "application": "kubernetes",
 		  "name": "V2 Provider",
 		  "description": "This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
 		  "keepWaitingPipelines": false,
