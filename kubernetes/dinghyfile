@@ -216,7 +216,6 @@
 		        "75e362dd-0560-4fb2-a2ce-745a404476b0"
 		      ],
 		      "payloadConstraints": {},
-		      "runAsUser": "sa-engineer",
 		      "source": "spinhelmdemo",
 		      "type": "webhook"
 		    }
