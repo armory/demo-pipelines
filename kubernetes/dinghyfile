@@ -3,6 +3,228 @@
 	"pipelines": [
 		{
 		  "application": "kubernetes",
+		  "appConfig": {},
+		  "description": "This pipeline demonstrates how to deploy Helm charts as Kubernetes manifests with Spinnaker. The Helm charts and related scripts can be found at <https://github.com/armory/spin-helm-demo>. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
+		  "expectedArtifacts": [
+		    {
+		      "defaultArtifact": {
+		        "kind": "default.docker",
+		        "name": "ethanfrogers/spin-helm-demo",
+		        "reference": "ethanfrogers/spin-helm-demo:latest",
+		        "type": "docker/image",
+		        "version": "latest"
+		      },
+		      "id": "2035240c-cc99-455b-a255-375a299b9e4e",
+		      "matchArtifact": {
+		        "kind": "docker",
+		        "name": "spin-helm-demo",
+		        "type": "docker/image"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    },
+		    {
+		      "defaultArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "type": "http/file"
+		      },
+		      "id": "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a",
+		      "matchArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "type": "http/file"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    },
+		    {
+		      "defaultArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "type": "http/file"
+		      },
+		      "id": "f8898299-4a99-436b-b062-acb3b7a3fa0b",
+		      "matchArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "type": "http/file"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    },
+		    {
+		      "defaultArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "type": "http/file"
+		      },
+		      "id": "75e362dd-0560-4fb2-a2ce-745a404476b0",
+		      "matchArtifact": {
+		        "kind": "custom",
+		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "type": "http/file"
+		      },
+		      "useDefaultArtifact": true,
+		      "usePriorArtifact": true,
+		      "usePriorExecution": false
+		    }
+		  ],
+		  "keepWaitingPipelines": false,
+		  "lastModifiedBy": "ethanfrogers",
+		  "limitConcurrent": true,
+		  "stages": [
+		    {
+		      "expectedArtifacts": [
+		        {
+		          "defaultArtifact": {},
+		          "id": "3e1b8678-4aa8-42dc-aa7f-0cb2dd2a203c",
+		          "matchArtifact": {
+		            "kind": "base64",
+		            "name": "spinhelmdemo-dev",
+		            "type": "embedded/base64"
+		          },
+		          "useDefaultArtifact": false
+		        }
+		      ],
+		      "inputArtifacts": [
+		        {
+		          "account": "http",
+		          "id": "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a"
+		        },
+		        {
+		          "account": "http",
+		          "id": "f8898299-4a99-436b-b062-acb3b7a3fa0b"
+		        }
+		      ],
+		      "name": "Bake Dev Manifest",
+		      "namespace": "demo",
+		      "outputName": "spinhelmdemo-dev",
+		      "overrides": {},
+		      "refId": "1",
+		      "requisiteStageRefIds": [],
+		      "templateRenderer": "HELM2",
+		      "type": "bakeManifest"
+		    },
+		    {
+		      "expectedArtifacts": [
+		        {
+		          "defaultArtifact": {},
+		          "id": "1800a9cf-2202-4167-879c-389d65dc2a76",
+		          "matchArtifact": {
+		            "kind": "base64",
+		            "name": "spinhelmdemo-prod",
+		            "type": "embedded/base64"
+		          },
+		          "useDefaultArtifact": false
+		        }
+		      ],
+		      "inputArtifacts": [
+		        {
+		          "account": "http",
+		          "id": "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a"
+		        },
+		        {
+		          "account": "http",
+		          "id": "75e362dd-0560-4fb2-a2ce-745a404476b0"
+		        }
+		      ],
+		      "name": "Bake Prod Manifest",
+		      "namespace": "demo",
+		      "outputName": "spinhelmdemo-prod",
+		      "overrides": {},
+		      "refId": "2",
+		      "requisiteStageRefIds": [],
+		      "templateRenderer": "HELM2",
+		      "type": "bakeManifest"
+		    },
+		    {
+		      "account": "kubernetes",
+		      "cloudProvider": "kubernetes",
+		      "manifestArtifactAccount": "embedded-artifact",
+		      "manifestArtifactId": "3e1b8678-4aa8-42dc-aa7f-0cb2dd2a203c",
+		      "moniker": {
+		        "app": "kubernetes"
+		      },
+		      "name": "Deploy Dev Manifest",
+		      "refId": "3",
+		      "relationships": {
+		        "loadBalancers": [],
+		        "securityGroups": []
+		      },
+		      "requiredArtifactIds": [
+		        "2035240c-cc99-455b-a255-375a299b9e4e"
+		      ],
+		      "requisiteStageRefIds": [
+		        "2",
+		        "1"
+		      ],
+		      "source": "artifact",
+		      "type": "deployManifest"
+		    },
+		    {
+		      "failPipeline": true,
+		      "judgmentInputs": [],
+		      "name": "Manual Judgment",
+		      "notifications": [],
+		      "refId": "4",
+		      "requisiteStageRefIds": [
+		        "3"
+		      ],
+		      "type": "manualJudgment"
+		    },
+		    {
+		      "account": "kubernetes",
+		      "cloudProvider": "kubernetes",
+		      "manifestArtifactAccount": "embedded-artifact",
+		      "manifestArtifactId": "1800a9cf-2202-4167-879c-389d65dc2a76",
+		      "moniker": {
+		        "app": "kubernetes"
+		      },
+		      "name": "Deploy Prod Manifest",
+		      "refId": "5",
+		      "relationships": {
+		        "loadBalancers": [],
+		        "securityGroups": []
+		      },
+		      "requiredArtifactIds": [
+		        "2035240c-cc99-455b-a255-375a299b9e4e"
+		      ],
+		      "requisiteStageRefIds": [
+		        "4"
+		      ],
+		      "source": "artifact",
+		      "type": "deployManifest"
+		    }
+		  ],
+		  "triggers": [
+		    {
+		      "enabled": false,
+		      "expectedArtifactIds": [
+		        "2035240c-cc99-455b-a255-375a299b9e4e",
+		        "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a",
+		        "f8898299-4a99-436b-b062-acb3b7a3fa0b",
+		        "75e362dd-0560-4fb2-a2ce-745a404476b0"
+		      ],
+		      "payloadConstraints": {},
+		      "runAsUser": "sa-engineer",
+		      "source": "spinhelmdemo",
+		      "type": "webhook"
+		    }
+		  ],
+		  "updateTs": "1531235846933"
+		},
+		{
+		  "application": "kubernetes",
 		  "name": "V2 Provider - Github Artifacts",
 		  "description": "This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The artifacts are stored in [Github](https://github.com/armory/spinnaker-k8s-v2-example) and referenced in the pipeline. Any time these artifacts change, they are deployed with this pipeline.",
 		  "expectedArtifacts": [

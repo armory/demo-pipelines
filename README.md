@@ -9,3 +9,6 @@ This pipeline demonstrates how to deploy Kubernetes manifests with inline artifa
 
 ## V2 Provider - Github Artifacts
 This pipeline demonstrates how to deploy Kubernetes manifests that are stored in an external system like Github.
+
+## V2 Provider - Helm Bake & Deploy
+This pipeline demonstrates how to Bake and Deploy Helm Charts as Kubernetes manifests.
