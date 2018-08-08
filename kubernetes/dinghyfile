@@ -28,14 +28,14 @@
 		    {
 		      "defaultArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "name": "chart",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
 		        "type": "http/file"
 		      },
 		      "id": "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a",
 		      "matchArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "name": "chart",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
 		        "type": "http/file"
 		      },
@@ -46,14 +46,14 @@
 		    {
 		      "defaultArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "name": "dev-values",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
 		        "type": "http/file"
 		      },
 		      "id": "f8898299-4a99-436b-b062-acb3b7a3fa0b",
 		      "matchArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
+		        "name": "dev-values",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/dev.yaml",
 		        "type": "http/file"
 		      },
@@ -64,14 +64,14 @@
 		    {
 		      "defaultArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "name": "prod-values",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
 		        "type": "http/file"
 		      },
 		      "id": "75e362dd-0560-4fb2-a2ce-745a404476b0",
 		      "matchArtifact": {
 		        "kind": "custom",
-		        "name": "s3://armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
+		        "name": "prod-values",
 		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packagevalues/spin-helm-demo/prod.yaml",
 		        "type": "http/file"
 		      },
