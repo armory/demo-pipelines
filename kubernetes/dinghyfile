@@ -209,7 +209,7 @@
 		  ],
 		  "triggers": [
 		    {
-		      "enabled": false,
+		      "enabled": true,
 		      "expectedArtifactIds": [
 		        "2035240c-cc99-455b-a255-375a299b9e4e",
 		        "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a",
