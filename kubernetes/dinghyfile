@@ -38,14 +38,14 @@
 		      "defaultArtifact": {
 		        "kind": "custom",
 		        "name": "chart",
-		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.8.tgz",
 		        "type": "http/file"
 		      },
 		      "id": "12ab0d10-cf5d-47e3-8f57-b168c7d43d4a",
 		      "matchArtifact": {
 		        "kind": "custom",
 		        "name": "chart",
-		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.7.tgz",
+		        "reference": "https://s3-us-west-2.amazonaws.com/armory-spinnaker-demo/packages/spin-helm-demo-0.1.8.tgz",
 		        "type": "http/file"
 		      },
 		      "useDefaultArtifact": true,
