@@ -6,6 +6,15 @@
 		  "name": "V2 Provider - Helm Bake & Deploy",
 		  "appConfig": {},
 		  "description": "This pipeline demonstrates how to deploy Helm Charts as Kubernetes manifests with Spinnaker. The Helm charts and related scripts can be found at <https://github.com/armory/spin-helm-demo>. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile .",
+		  "parameterConfig": [
+		      {
+		        "default": "demo",
+		        "description": "Kubernetes namespace value",
+		        "label": "Kubernetes Namespace",
+		        "name": "namespace",
+		        "required": true
+		      }
+		    ],
 		  "expectedArtifacts": [
 		    {
 		      "defaultArtifact": {
@@ -108,7 +117,7 @@
 		        }
 		      ],
 		      "name": "Bake Dev Manifest",
-		      "namespace": "demo",
+		      "namespace": "${parameters.namespace}",
 		      "outputName": "spinhelmdemo-dev",
 		      "overrides": {},
 		      "refId": "1",
@@ -140,7 +149,7 @@
 		        }
 		      ],
 		      "name": "Bake Prod Manifest",
-		      "namespace": "demo",
+		      "namespace": "${parameters.namespace}",
 		      "outputName": "spinhelmdemo-prod",
 		      "overrides": {},
 		      "refId": "2",
