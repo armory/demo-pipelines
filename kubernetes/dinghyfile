@@ -234,7 +234,7 @@
 		},
 		{
 		  "application": "kubernetes",
-		  "name": "V2 Provider - Github Artifacts",
+		  "name": "V2 Provider - Github Artifacts1",
 		  "description": "This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The artifacts are stored in [Github](https://github.com/armory/spinnaker-k8s-v2-example) and referenced in the pipeline. Any time these artifacts change, they are deployed with this pipeline.",
 		  "expectedArtifacts": [
 		    {
