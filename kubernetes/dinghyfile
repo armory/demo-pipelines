@@ -116,7 +116,7 @@
 		          "id": "f8898299-4a99-436b-b062-acb3b7a3fa0b"
 		        }
 		      ],
-		      "name": "Bake Dev Manifest1",
+		      "name": "Bake Dev Manifest",
 		      "namespace": "${parameters.namespace}",
 		      "outputName": "spinhelmdemo-dev",
 		      "overrides": {"image.name": "ethanfrogers/spin-helm-demo"},
