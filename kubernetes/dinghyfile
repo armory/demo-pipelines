@@ -377,7 +377,8 @@
 		    "limitConcurrent": true,
 		    "locked": {
 		      "allowUnlockUi": false,
-		      "ui": true
+		      "description": "Locked down",
+		      "ui": false
 		    },
 		    "parameterConfig": [
 		      {
