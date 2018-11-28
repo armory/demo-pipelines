@@ -5,7 +5,7 @@
 		  "application": "kubernetes",
 		  "name": "V2 Provider - Helm Bake & Deploy",
 		  "appConfig": {},
-		  "description": "This pipeline is managed by Dinghy, and it demonstrates how to deploy Helm Charts as Kubernetes manifests with Spinnaker. The Helm charts and related scripts can be found at <https://github.com/armory/spin-helm-demo>. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile .",
+		  "description": "This pipeline is always managed by Dinghy, and it demonstrates how to deploy Helm Charts as Kubernetes manifests with Spinnaker. The Helm charts and related scripts can be found at <https://github.com/armory/spin-helm-demo>. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile .",
 		  "parameterConfig": [
 		      {
 		        "default": "demo",
@@ -673,7 +673,7 @@
 		    ],
 		    "stages": [
 		    
-					{{ module "wait.stage.module" "waitTime" 240 }},
+					{{ module "wait.stage.module" "waitTime" 600 }},
 		      {
 		        "account": "kubernetes",
 		        "cloudProvider": "kubernetes",
