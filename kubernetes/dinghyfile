@@ -629,6 +629,288 @@
 		        "type": "deployManifest"
 		      }
 		    ]
+		},
+		{
+		  "application": "kubernetes",
+		  "name": "V2 Provider - Module Demo",
+		  "description": "This pipeline is managed by Dinghy!  This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
+		    "expectedArtifacts": [
+		      {
+		        "defaultArtifact": {
+		          "kind": "default.docker",
+		          "name": "index.docker.io/lwander/spin-kub-v2-demo",
+		          "reference": "index.docker.io/lwander/spin-kub-v2-demo:latest",
+		          "type": "docker/image",
+		          "version": "latest"
+		        },
+		        "id": "adcc3b8a-3c1b-4c88-aa39-db6447179106",
+		        "matchArtifact": {
+		          "kind": "docker",
+		          "name": "index.docker.io/lwander/spin-kub-v2-demo",
+		          "type": "docker/image"
+		        },
+		        "useDefaultArtifact": true,
+		        "usePriorArtifact": true,
+		        "usePriorExecution": false
+		      }
+		    ],
+		    "keepWaitingPipelines": false,
+		    "lastModifiedBy": "anonymous",
+		    "limitConcurrent": true,
+		    "locked": {
+		      "allowUnlockUi": false,
+		      "description": "Locked down",
+		      "ui": false
+		    },
+		    "parameterConfig": [
+		      {
+		        "default": "demo",
+		        "description": "Kubernetes namespace value",
+		        "label": "Kubernetes Namespace",
+		        "name": "namespace",
+		        "required": true
+		      }
+		    ],
+		    "stages": [
+		      {
+		        "account": "kubernetes",
+		        "cloudProvider": "kubernetes",
+		        "manifestArtifactAccount": "github-public",
+		        "manifests": [
+		          {
+		            "apiVersion": "v1",
+		            "data": {
+		              "NEW_FEATURE": "true"
+		            },
+		            "kind": "ConfigMap",
+		            "metadata": {
+		              "name": "spinnaker-demo-config",
+		              "namespace": "${parameters.namespace}"
+		            }
+		          },
+		          {
+		            "apiVersion": "extensions/v1beta1",
+		            "kind": "Deployment",
+		            "metadata": {
+		              "labels": {
+		                "app": "spinnaker",
+		                "source": "demo4",
+		                "stack": "frontend"
+		              },
+		              "name": "spinnaker-demo",
+		              "namespace": "${parameters.namespace}"
+		            },
+		            "spec": {
+		              "replicas": 3,
+		              "selector": {
+		                "matchLabels": {
+		                  "app": "spinnaker",
+		                  "source": "demo"
+		                }
+		              },
+		              "template": {
+		                "metadata": {
+		                  "labels": {
+		                    "app": "spinnaker",
+		                    "source": "demo"
+		                  }
+		                },
+		                "spec": {
+		                  "containers": [
+		                    {
+		                      "envFrom": [
+		                        {
+		                          "configMapRef": {
+		                            "name": "spinnaker-demo-config"
+		                          }
+		                        }
+		                      ],
+		                      "image": "index.docker.io/lwander/spin-kub-v2-demo",
+		                      "name": "primary",
+		                      "ports": [
+		                        {
+		                          "containerPort": 8000
+		                        }
+		                      ],
+		                      "readinessProbe": {
+		                        "httpGet": {
+		                          "path": "/",
+		                          "port": 8000
+		                        }
+		                      }
+		                    }
+		                  ]
+		                }
+		              }
+		            }
+		          },
+		          {
+		            "apiVersion": "v1",
+		            "kind": "Service",
+		            "metadata": {
+		              "name": "spinnaker-demo",
+		              "namespace": "${parameters.namespace}"
+		            },
+		            "spec": {
+		              "ports": [
+		                {
+		                  "port": 80,
+		                  "protocol": "TCP",
+		                  "targetPort": 8000
+		                }
+		              ],
+		              "selector": {
+		                "app": "spinnaker",
+		                "source": "demo"
+		              }
+		            }
+		          }
+		        ],
+		        "moniker": {
+		          "app": "kubernetes",
+		          "cluster": "v2dev",
+		          "stack": ""
+		        },
+		        "name": "Deploy Dev Environment",
+		        "refId": "1",
+		        "relationships": {
+		          "loadBalancers": [],
+		          "securityGroups": []
+		        },
+		        "requiredArtifactIds": [
+		          "adcc3b8a-3c1b-4c88-aa39-db6447179106"
+		        ],
+		        "requisiteStageRefIds": [],
+		        "source": "text",
+		        "type": "deployManifest"
+		      },
+		      {
+		        "failPipeline": true,
+		        "instructions": "Do these manifests look okay?",
+		        "judgmentInputs": [],
+		        "name": "Manual Judgment",
+		        "notifications": [],
+		        "refId": "2",
+		        "requisiteStageRefIds": [
+		          "1"
+		        ],
+		        "type": "manualJudgment"
+		      },
+		      {
+		        "account": "kubernetes",
+		        "cloudProvider": "kubernetes",
+		        "manifestArtifactAccount": "github-public",
+		        "manifests": [
+		          {
+		            "apiVersion": "v1",
+		            "data": {
+		              "NEW_FEATURE": "true"
+		            },
+		            "kind": "ConfigMap",
+		            "metadata": {
+		              "name": "spinnaker-demo-config",
+		              "namespace": "${parameters.namespace}"
+		            }
+		          },
+		          {
+		            "apiVersion": "extensions/v1beta1",
+		            "kind": "Deployment",
+		            "metadata": {
+		              "labels": {
+		                "app": "spinnaker",
+		                "source": "demo4",
+		                "stack": "frontend"
+		              },
+		              "name": "spinnaker-demo",
+		              "namespace": "${parameters.namespace}"
+		            },
+		            "spec": {
+		              "replicas": 3,
+		              "selector": {
+		                "matchLabels": {
+		                  "app": "spinnaker",
+		                  "source": "demo"
+		                }
+		              },
+		              "template": {
+		                "metadata": {
+		                  "labels": {
+		                    "app": "spinnaker",
+		                    "source": "demo"
+		                  }
+		                },
+		                "spec": {
+		                  "containers": [
+		                    {
+		                      "envFrom": [
+		                        {
+		                          "configMapRef": {
+		                            "name": "spinnaker-demo-config"
+		                          }
+		                        }
+		                      ],
+		                      "image": "index.docker.io/lwander/spin-kub-v2-demo",
+		                      "name": "primary",
+		                      "ports": [
+		                        {
+		                          "containerPort": 8000
+		                        }
+		                      ],
+		                      "readinessProbe": {
+		                        "httpGet": {
+		                          "path": "/",
+		                          "port": 8000
+		                        }
+		                      }
+		                    }
+		                  ]
+		                }
+		              }
+		            }
+		          },
+		          {
+		            "apiVersion": "v1",
+		            "kind": "Service",
+		            "metadata": {
+		              "name": "spinnaker-demo",
+		              "namespace": "${parameters.namespace}"
+		            },
+		            "spec": {
+		              "ports": [
+		                {
+		                  "port": 80,
+		                  "protocol": "TCP",
+		                  "targetPort": 8000
+		                }
+		              ],
+		              "selector": {
+		                "app": "spinnaker",
+		                "source": "demo"
+		              }
+		            }
+		          }
+		        ],
+		        "moniker": {
+		          "app": "kubernetes",
+		          "cluster": "v2prod",
+		          "stack": ""
+		        },
+		        "name": "Deploy Prod Environment",
+		        "refId": "3",
+		        "relationships": {
+		          "loadBalancers": [],
+		          "securityGroups": []
+		        },
+		        "requiredArtifactIds": [
+		          "adcc3b8a-3c1b-4c88-aa39-db6447179106"
+		        ],
+		        "requisiteStageRefIds": [
+		          "2"
+		        ],
+		        "source": "text",
+		        "type": "deployManifest"
+		      }
+		    ]
 		}
 	]
 }
