@@ -673,7 +673,7 @@
 		    ],
 		    "stages": [
 		    
-		      {{ module "wait.stage.json" }},
+		      "{{ module "wait.stage.json" }}",
 		      {
 		        "account": "kubernetes",
 		        "cloudProvider": "kubernetes",
