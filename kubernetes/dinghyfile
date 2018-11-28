@@ -633,7 +633,7 @@
 		{
 		  "application": "kubernetes",
 		  "name": "V2 Provider - Module Demo",
-		  "description": "This pipeline is also managed by Dinghy and displays modules!  This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
+		  "description": "This pipeline is now managed by Dinghy and displays modules!  This pipeline demonstrates how to deploy Kubernetes manifests with Spinnaker. The manifests are defined inline so that you can easily see what's being deployed. Check out the `dinghyfile` at https://github.com/armory/demo-pipelines/kubernetes/dinghyfile.",
 		    "expectedArtifacts": [
 		      {
 		        "defaultArtifact": {
@@ -673,7 +673,13 @@
 		    ],
 		    "stages": [
 		    
-		      "{{ module "wait.stage.json" }}",
+		      {
+						"name": "Wait",
+						"refId": "1",
+						"requisiteStageRefIds": [],
+						"type": "wait",
+						"waitTime": 300
+					},
 		      {
 		        "account": "kubernetes",
 		        "cloudProvider": "kubernetes",
@@ -774,7 +780,7 @@
 		          "stack": ""
 		        },
 		        "name": "Deploy Dev Environment",
-		        "refId": "1",
+		        "refId": "2",
 		        "relationships": {
 		          "loadBalancers": [],
 		          "securityGroups": []
@@ -792,9 +798,9 @@
 		        "judgmentInputs": [],
 		        "name": "Manual Judgment",
 		        "notifications": [],
-		        "refId": "2",
+		        "refId": "3",
 		        "requisiteStageRefIds": [
-		          "1"
+		          "2"
 		        ],
 		        "type": "manualJudgment"
 		      },
@@ -898,7 +904,7 @@
 		          "stack": ""
 		        },
 		        "name": "Deploy Prod Environment",
-		        "refId": "3",
+		        "refId": "4",
 		        "relationships": {
 		          "loadBalancers": [],
 		          "securityGroups": []
@@ -907,7 +913,7 @@
 		          "adcc3b8a-3c1b-4c88-aa39-db6447179106"
 		        ],
 		        "requisiteStageRefIds": [
-		          "2"
+		          "3"
 		        ],
 		        "source": "text",
 		        "type": "deployManifest"
