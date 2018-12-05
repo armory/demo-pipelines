@@ -673,7 +673,7 @@
 		    ],
 		    "stages": [
 		    
-					{{ module "wait.stage.module" "waitTime" 600 }},
+					{{ module "wait.stage.module" "waitTime" 450 }},
 		      {
 		        "account": "kubernetes",
 		        "cloudProvider": "kubernetes",
