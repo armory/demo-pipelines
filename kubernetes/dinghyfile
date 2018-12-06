@@ -165,7 +165,7 @@
 		      "moniker": {
 		        "app": "kubernetes"
 		      },
-		      "name": "Deploy Dev Manifest",
+		      "name": "Deploy Dev Manifest Samsung",
 		      "refId": "3",
 		      "relationships": {
 		        "loadBalancers": [],
